@@ -1,42 +1,23 @@
-#include <SDL.h>
+#pragma once
 #include <iostream>
-#include "main.h"
-
-SDL_Window* _window;
-SDL_Renderer* _renderer;
+#include "../headers/game.h"
 
 const int SCREEN_X = 640;
 const int SCREEN_Y = 480;
 
-bool init(int screenX, int screenY) {
-	SDL_CreateWindowAndRenderer(SCREEN_X, SCREEN_Y, 0, &_window, &_renderer);
-	SDL_SetWindowTitle(_window, "SDL Works!");
-	return _window ? true : false;
-}
-
-void render() {
-	SDL_SetRenderDrawColor(_renderer, 0, 0, 0, 255);
-	SDL_RenderClear(_renderer);
-	SDL_RenderPresent(_renderer);
-}
+Game* g_game = 0;
 
 int main(int argc, char* argv[]) {
 
-	if (SDL_Init(SDL_INIT_EVERYTHING) < 0 ) {
-		std::cout << "failed to load SDL" << std::endl;
-	}
-
-	bool running = false;
-
-	if (init(SCREEN_X, SCREEN_Y)) {
-		running = true;
-	}
-
-	while (running) {
-		render();
-	}
+	g_game = new Game();
+	g_game->init(SCREEN_X,SCREEN_Y);
 	
-	SDL_Quit();
+	while (g_game->getRunning()) {
+		g_game->handleEvents();
+		g_game->update();
+		g_game->render();
+	}
+	g_game->clean();
 
 	return 0;
 }
