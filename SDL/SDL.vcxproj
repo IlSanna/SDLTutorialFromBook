@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\game.h" />
+    <ClInclude Include="headers\TextureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="content\caveman.bmp" />

@@ -36,16 +36,6 @@ void Game::init(int screenX, int screenY) {
 	}
 }
 
-void Game::render() {
-	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle,&m_destinationRectangle);
-	SDL_RenderPresent(m_pRenderer); // draw to the screen
-}
-
-void Game::update() {
-	m_sourceRectangle.x = 32 * int((SDL_GetTicks() / 100) % 4);
-}
-
 void Game::handleEvents() {
 	SDL_Event event;
 	if (SDL_PollEvent(&event)) {
@@ -57,6 +47,15 @@ void Game::handleEvents() {
 			break;
 		}
 	}
+}
+
+void Game::update() {
+	m_sourceRectangle.x = 32 * int((SDL_GetTicks() / 100) % 4);
+}
+void Game::render() {
+	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
+	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
 void Game::clean() {
