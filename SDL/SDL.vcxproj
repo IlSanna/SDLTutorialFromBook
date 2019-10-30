@@ -153,13 +153,23 @@
   <ItemGroup>
     <ClCompile Include="src\game.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\textureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\game.h" />
-    <ClInclude Include="headers\TextureManager.h" />
+    <ClInclude Include="headers\textureManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="content\caveman.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libjpeg-9.dll" />
+    <None Include="libpng16-16.dll" />
+    <None Include="libtiff-5.dll" />
+    <None Include="libwebp-7.dll" />
+    <None Include="SDL2.dll" />
+    <None Include="SDL2_image.dll" />
+    <None Include="zlib1.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -12,22 +12,7 @@ void Game::init(int screenX, int screenY) {
 		SDL_CreateWindowAndRenderer(screenX,screenY,0,&m_pWindow,&m_pRenderer);
 		SDL_SetRenderDrawColor(m_pRenderer,0, 0, 0, 255);
 
-		std::string path = "content/caveman.bmp";
-		SDL_Surface* pTempSurface = IMG_Load(path.c_str());
-		if (!pTempSurface) {
-			std::cout << "failed to load the texture" << std::endl;
-		}
-		m_pTexture = SDL_CreateTextureFromSurface(m_pRenderer,pTempSurface);
-		SDL_FreeSurface(pTempSurface);
-		
-		//Querying the texture will allow us to set the width and height of our source rectangle to the exact dimensions needed
-		m_sourceRectangle.w = 32;
-		m_sourceRectangle.h = 32;
-		m_destinationRectangle.x = m_sourceRectangle.x = 0;
-		m_destinationRectangle.y = m_sourceRectangle.y = 0;
-		m_destinationRectangle.w = m_sourceRectangle.w;
-		m_destinationRectangle.h = m_sourceRectangle.h;
-		
+		m_textureManager.load("content/caveman.bmp", "animate", m_pRenderer);
 
 		m_bRunning = true;
 	}
@@ -50,11 +35,13 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-	m_sourceRectangle.x = 32 * int((SDL_GetTicks() / 100) % 4);
+	m_currentFrame = int((SDL_GetTicks() / 100) % 4);
+	std::cout << m_currentFrame << std::endl;
 }
 void Game::render() {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
-	SDL_RenderCopy(m_pRenderer, m_pTexture, &m_sourceRectangle, &m_destinationRectangle);
+	m_textureManager.draw("animate", 0, 0, 32, 32, m_pRenderer);
+	m_textureManager.drawFrame("animate", 100, 100, 32, 32, 1,m_currentFrame,m_pRenderer);
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
