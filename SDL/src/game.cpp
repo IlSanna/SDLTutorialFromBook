@@ -12,7 +12,8 @@ void Game::init(int screenX, int screenY) {
 		SDL_CreateWindowAndRenderer(screenX,screenY,0,&m_pWindow,&m_pRenderer);
 		SDL_SetRenderDrawColor(m_pRenderer,0, 0, 0, 255);
 
-		m_textureManager.load("content/caveman.bmp", "animate", m_pRenderer);
+		TheTextureManager::Instance()->load("content/caveman.bmp", "animate", m_pRenderer);
+		//m_textureManager.load("content/caveman.bmp", "animate", m_pRenderer);
 
 		m_bRunning = true;
 	}
@@ -34,14 +35,14 @@ void Game::handleEvents() {
 	}
 }
 
-void Game::update() {
+void Game::update() {//missing elapsed time
 	m_currentFrame = int((SDL_GetTicks() / 100) % 4);
 	std::cout << m_currentFrame << std::endl;
 }
 void Game::render() {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
-	m_textureManager.draw("animate", 0, 0, 32, 32, m_pRenderer);
-	m_textureManager.drawFrame("animate", 100, 100, 32, 32, 1,m_currentFrame,m_pRenderer);
+	TheTextureManager::Instance()->draw("animate", 0, 0, 32, 32, m_pRenderer);
+	TheTextureManager::Instance()->drawFrame("animate", 100, 100, 32, 32, 1,m_currentFrame,m_pRenderer);
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
 
