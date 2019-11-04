@@ -12,6 +12,9 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer * p
 		m_textureMap[id] = pTexture;
 		return true;
 	}
+	else {
+		std::cout << "problemi texture" << std::endl;
+	}
 	return false;
 }
 //draw a single sprite

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <string>
 #include "textureManager.h"
+#include "player.h"
 
 class Game {
 public:
@@ -25,8 +26,9 @@ private:
 	SDL_Renderer* m_pRenderer;
 
 	int m_currentFrame;
-	//TextureManager m_textureManager;
-
+	GameObject m_go;
+	Player m_player;
+	
 	bool m_bRunning;
 };
 
