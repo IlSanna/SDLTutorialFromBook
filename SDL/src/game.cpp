@@ -1,12 +1,14 @@
 #include "../headers/game.h"
 
+Game* Game::s_pInstance = 0;
+
 Game::Game() {
 }
 
 Game::~Game() {
 }
 
-void Game::init(int screenX, int screenY) {
+bool Game::init(int screenX, int screenY) {
 	if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
 		std::cout << "SDL init!" << std::endl;
 		SDL_CreateWindowAndRenderer(screenX,screenY,0,&m_pWindow,&m_pRenderer);
@@ -15,22 +17,15 @@ void Game::init(int screenX, int screenY) {
 		//load images
 		TheTextureManager::Instance()->load("content/caveman.bmp", "animate", m_pRenderer);
 
-		m_go = new GameObject();
-		m_player = new Player();
-		m_enemy = new Enemy();
-
-		m_go->load(100, 100, 32, 32, "animate");
-		m_player->load(300, 300, 32, 32, "animate");
-		m_enemy->load( 150, 150, 32, 32, "animate" );
-
-		m_gameObjects.push_back(m_go);
-		m_gameObjects.push_back(m_player);
-		m_gameObjects.push_back( m_enemy );
+		m_gameObjects.push_back(new Player(new LoaderParams( 300, 300, 32, 32, "animate" )));
+		m_gameObjects.push_back( new Enemy( new LoaderParams( 150, 150, 32, 32, "animate" ) ) );
 
 		m_bRunning = true;
+		return true;
 	}
 	else {
 		m_bRunning = false;
+		return false;
 	}
 }
 
@@ -56,7 +51,7 @@ void Game::update() {//missing elapsed time
 void Game::render() {
 	SDL_RenderClear(m_pRenderer); // clear the renderer to the draw color
 	for (auto i = 0; i < m_gameObjects.size(); i++) {
-		m_gameObjects[i]->draw(m_pRenderer);
+		m_gameObjects[i]->draw();
 	}
 	SDL_RenderPresent(m_pRenderer); // draw to the screen
 }
@@ -69,4 +64,8 @@ void Game::clean() {
 
 bool Game::getRunning() const {
 	return m_bRunning;
+}
+
+SDL_Renderer* Game::getRenderer() const {
+	return m_pRenderer;
 }

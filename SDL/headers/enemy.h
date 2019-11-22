@@ -1,14 +1,11 @@
-#ifndef _ENEMY_H_
-#define _ENEMY_H_
+#pragma once
+#include "SDLgameObject.h"
 
-#include "gameobject.h"
-
-class Enemy : public GameObject {
+class Enemy : public SDLGameObject {
 public:
-	void update(){
-		GameObject::update();
-		m_y += 1;
-		m_x += 1;
-	}
+	Enemy( const LoaderParams* pParams );
+	virtual void draw();
+	virtual void update();
+	virtual void clean();
 };
-#endif // !_ENEMY_H_
+

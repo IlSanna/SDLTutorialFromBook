@@ -151,17 +151,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\enemy.cpp" />
     <ClCompile Include="src\game.cpp" />
-    <ClCompile Include="src\gameobject.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\SDLgameObject.cpp" />
     <ClCompile Include="src\textureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="headers\enemy.h" />
     <ClInclude Include="headers\game.h" />
     <ClInclude Include="headers\gameobject.h" />
+    <ClInclude Include="headers\loaderParams.h" />
     <ClInclude Include="headers\player.h" />
+    <ClInclude Include="headers\SDLgameObject.h" />
     <ClInclude Include="headers\textureManager.h" />
   </ItemGroup>
   <ItemGroup>

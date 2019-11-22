@@ -5,20 +5,20 @@
 const int SCREEN_X = 640;
 const int SCREEN_Y = 480;
 
-Game* g_game = 0;
-
 int main(int argc, char* argv[]) {
 
-	g_game = new Game();
-	g_game->init(SCREEN_X,SCREEN_Y);
-	
-	while (g_game->getRunning()) {
-		g_game->handleEvents();
-		g_game->update();
-		g_game->render();
-		SDL_Delay(10);
+	if ( TheGame::instance()->init( SCREEN_X, SCREEN_Y ) ) {
+		while ( TheGame::instance()->getRunning() ) {
+			TheGame::instance()->handleEvents();
+			TheGame::instance()->update();
+			TheGame::instance()->render();
+			SDL_Delay( 10 );
+		}
+	} else {
+		return -1;
 	}
-	g_game->clean();
+
+	TheGame::instance()->clean();
 
 	return 0;
 }
