@@ -158,6 +158,7 @@
     <ClCompile Include="src\textureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="headers\enemy.h" />
     <ClInclude Include="headers\game.h" />
     <ClInclude Include="headers\gameobject.h" />
     <ClInclude Include="headers\player.h" />
