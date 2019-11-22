@@ -43,7 +43,6 @@ void Game::handleEvents() {
 }
 
 void Game::update() {//missing elapsed time
-	m_currentFrame = int((SDL_GetTicks() / 100) % 4);
 	for (auto i = 0; i < m_gameObjects.size(); i++) {
 		m_gameObjects[i]->update();
 	}

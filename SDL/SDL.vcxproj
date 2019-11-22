@@ -166,6 +166,7 @@
     <ClInclude Include="headers\player.h" />
     <ClInclude Include="headers\SDLgameObject.h" />
     <ClInclude Include="headers\textureManager.h" />
+    <ClInclude Include="headers\vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="content\caveman.bmp" />
