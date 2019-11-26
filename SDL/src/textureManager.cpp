@@ -9,6 +9,7 @@ bool TextureManager::load(std::string fileName, std::string id, SDL_Renderer * p
 	SDL_FreeSurface(pTempSurface);
 
 	if (pTexture) {//this is not optimal because can load the same texture twice
+		std::cout << "carico texture" << std::endl;
 		m_textureMap[id] = pTexture;
 		return true;
 	}
